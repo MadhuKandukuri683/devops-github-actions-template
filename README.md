@@ -1,40 +1,41 @@
-✅ Goal: Build a DevOps-ready Template Project using GitHub Actions
-We’ll build a Node.js Hello World API with CI/CD using GitHub Actions. You’ll be able to:
+# ✅ Goal
 
-Run automated tests
+Build a DevOps-ready Template Project using GitHub Actions
 
-Lint your code
+We’ll create a Node.js Hello World API with CI/CD using GitHub Actions. You’ll be able to:
 
-Deploy to GitHub Pages (static) or simulate a deploy step
+- Run automated tests
+- Lint your code
+- Deploy to GitHub Pages (static) or simulate a deploy step
 
-🧱 Step-by-Step Instructions (No Local Desktop Required)
-🔹 1. Create a GitHub Repository
-Go to https://github.com/new
+---
 
-Name the repo: devops-github-actions-template
+## 🧱 Step-by-Step Instructions (No Local Desktop Required)
 
-Select:
+### 1. Create a GitHub Repository
 
-Public or private
+- Go to [GitHub New Repo](https://github.com/new)
+- Name the repo: `devops-github-actions-template`
+- Select public or private
+- Initialize with a README
+- Click **Create repository**
 
-Initialize with a README
+---
 
-Click Create repository
+### 2. Open in VSCode.dev
 
-🔹 2. Open in VSCode.dev
-Press . on your keyboard from your GitHub repo page
-OR
-Visit: https://vscode.dev/github/your-username/devops-github-actions-template
+- Press `.` on your keyboard from your GitHub repo page  
+  **OR**
+- Visit: `https://vscode.dev/github/your-username/devops-github-actions-template`
 
-🔹 3. Create Your Project Structure
-Inside VSCode.dev:
+---
 
-Create these files one by one using the sidebar ➕ button.
+### 3. Create Your Project Structure
 
-pgsql
-Copy
-Edit
-📁 devops-github-actions-template/
+Inside VSCode.dev, create these files one by one using the sidebar ➕ button:
+
+```
+devops-github-actions-template/
 ├── .github/
 │   └── workflows/
 │       └── nodejs.yml       <-- GitHub Actions CI/CD
@@ -44,12 +45,15 @@ Edit
 │   └── test.js              <-- Simple test
 ├── package.json             <-- Project metadata
 └── .eslintrc.json           <-- Linting rules
-🔹 4. Add Node.js Project Files
-📝 package.json
+```
 
-json
-Copy
-Edit
+---
+
+### 4. Add Node.js Project Files
+
+#### `package.json`
+
+```json
 {
   "name": "devops-template",
   "version": "1.0.0",
@@ -63,33 +67,32 @@ Edit
     "eslint": "^8.0.0"
   }
 }
-📝 src/index.js
+```
 
-js
-Copy
-Edit
+#### `src/index.js`
+
+```js
 function sayHello() {
   return 'Hello, DevOps!';
 }
 
 console.log(sayHello());
-
 module.exports = sayHello;
-📝 test/test.js
+```
 
-js
-Copy
-Edit
+#### `test/test.js`
+
+```js
 const assert = require('assert');
 const sayHello = require('../src/index');
 
 assert.strictEqual(sayHello(), 'Hello, DevOps!');
 console.log('✅ Test passed');
-📝 .eslintrc.json
+```
 
-json
-Copy
-Edit
+#### `.eslintrc.json`
+
+```json
 {
   "env": {
     "es2021": true,
@@ -101,17 +104,21 @@ Edit
     "quotes": ["error", "single"]
   }
 }
-🔹 5. Install Dependencies (via GitHub Codespaces or CI)
-Since you’re using browser-only tools:
+```
 
-You can’t run npm install in vscode.dev, but GitHub Actions will do it for you.
+---
 
-🔹 6. Create GitHub Actions Workflow
-📝 .github/workflows/nodejs.yml
+### 5. Install Dependencies (via GitHub Codespaces or CI)
 
-yaml
-Copy
-Edit
+- You can’t run `npm install` in vscode.dev, but GitHub Actions will do it for you.
+
+---
+
+### 6. Create GitHub Actions Workflow
+
+#### `.github/workflows/nodejs.yml`
+
+```yaml
 name: Node.js CI
 
 on:
@@ -122,69 +129,64 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
       - name: Install dependencies
         run: npm install
-
       - name: Lint code
         run: npm run lint
-
       - name: Run tests
         run: npm test
-🔹 7. Commit & Push
-Use the Source Control tab in vscode.dev
+```
 
-Commit all your files with a message: initial commit with CI
+---
 
-Push the changes
+### 7. Commit & Push
 
-🔹 8. Check GitHub Actions Run
-Go to your GitHub repo
+- Use the Source Control tab in vscode.dev
+- Commit all your files with a message: `initial commit with CI`
+- Push the changes
 
-Click the Actions tab
+---
 
-See the workflow running:
+### 8. Check GitHub Actions Run
 
-✅ Checkout
+- Go to your GitHub repo
+- Click the **Actions** tab
+- See the workflow running:
+  - ✅ Checkout
+  - ✅ Setup Node
+  - ✅ Install
+  - ✅ Lint
+  - ✅ Test
 
-✅ Setup Node
+---
 
-✅ Install
+### 🎁 Optional: Add Deploy Step (Mock)
 
-✅ Lint
+To simulate deployment, add to your workflow:
 
-✅ Test
-
-🎁 Optional: Add Deploy Step (Mock)
-To simulate deployment:
-
-yaml
-Copy
-Edit
+```yaml
 - name: Deploy (simulate)
   run: echo "🚀 Deployed successfully!"
-Or use gh-pages or vercel for actual static hosting if needed.
+```
 
-🚀 Result
+Or use `gh-pages` or Vercel for actual static hosting if needed.
+
+---
+
+## 🚀 Result
+
 You now have:
 
-✅ A GitHub-only Node.js app
-
-✅ CI/CD pipeline with:
-
-Auto test
-
-Auto lint
-
-✅ No need for local machine setup
+- ✅ A GitHub-only Node.js app
+- ✅ CI/CD pipeline with:
+  - Auto test
+  - Auto lint
+- ✅ No need for local machine setup
